@@ -1,0 +1,6 @@
+To make the charging station communicate with the central System 
+complete the following:
+1. adb connect ip_of_the_charging_station:port (ip changes, port is always 5555)
+2. adb pull the config file from the station if you dont have it // use : adb pull /data/data/com.xcharge.charger/files/ocpp_cfg.json
+3. Change the url of the ocpp_cfg.json file to your central system adress and port ("http://192.168.0.178:9016" for my home network)
+4. adb reboot the charging station and you should be ready to go.

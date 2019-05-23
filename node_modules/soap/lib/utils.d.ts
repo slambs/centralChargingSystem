@@ -1,0 +1,16 @@
+export declare function passwordDigest(nonce: string, created: string, password: string): string;
+export declare const TNS_PREFIX = "__tns__";
+/**
+ * Find a key from an object based on the value
+ * @param {Object} Namespace prefix/uri mapping
+ * @param {*} nsURI value
+ * @returns {String} The matching key
+ */
+export declare function findPrefix(xmlnsMapping: any, nsURI: any): string;
+export declare function splitQName<T>(nsName: T): {
+    prefix: string;
+    name: T;
+} | {
+    prefix: string;
+    name: string;
+};

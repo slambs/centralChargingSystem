@@ -1,0 +1,7 @@
+Content-Length: 1093
+Host: gutmann.htb.solutions
+Connection: close
+User-Agent: Metro/2.1 (branches/2.1-6728; 2011-02-03T14:14:58+0000) JAXWS-RI/2.2.3 JAXWS/2.2
+Accept: application/soap+xml, multipart/related
+Content-Type: application/soap+xml; charset=utf-8;action="/BootNotification"
+X-HTB-UNIQUE-ID: XOQR@X8AAQEAACHHrWAAAAAA
