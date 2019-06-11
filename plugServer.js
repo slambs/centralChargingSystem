@@ -22,17 +22,37 @@ wss.on('connection', function (ws) {
     
     // message receiving event
     ws.on('message', function (message) {
+        answerMessage = JSON.parse(message); // turn the string into a json
+        console.log(answerMessage[2]);
+        // Boot Notification Check and reply
+        if (answerMessage[2]==="BootNotification"){
+            console.log('Sending BootNotification Reply...')
+            bootReply =[3,answerMessage[1],{"status":"Accepted","currentTime":new Date().toISOString(),"interval":10}];
+            clients[0].ws.send(JSON.stringify(bootReply));
+            };
 
-        foranswer = JSON.parse(message); // turn the string into a json
-        reply =[3,foranswer[1],{"status":"Accepted","currentTime":new Date().toISOString(),"heartbeatInterval":300}];
+        if (answerMessage[2]==="StartTransaction"){
+            console.log('Sending StartTransaction reply...');
+            StartReply =[3,answerMessage[1],{"status":"Accepted"}];
+            clients[0].ws.send(JSON.stringify(StartReply));
+            ResetReply =[2,answerMessage[1],"ResetRequest",{"type":"Hard"}];
+            clients[0].ws.send(JSON.stringify(ResetReply));
+            };
+        if (answerMessage[2]==="Heartbeat"){
+            console.log('Sending Heartbeat reply...');
+            HeartReply =[3,answerMessage[1],{"currentTime":new Date().toISOString()}];
+            clients[0].ws.send(JSON.stringify(HeartReply));
+        };
+        
         console.log('Received Message: %s', message);
+        console.log('TimeStamp : ',Date());
         console.log('##################################');
-        //console.log(clients[0].ws);
-        clients[0].ws.send(JSON.stringify(reply));
+        
+       
     });
 
     ws.on('close', function () {
-       console.log('socket closed');
+       console.log(' sock closed');
     });
     process.on('SIGINT', function () {
         console.log("Closing things");
