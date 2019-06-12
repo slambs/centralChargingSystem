@@ -1,15 +1,15 @@
-## Central Charging System
+## Central Charging System- plug.control
 by V.S
 
-This is a project that aims to create a simple Tool to control store visualise charging processes for electric cars.
-Written in Javascript. And tested on an KEBA P30x - AC Charging Station.
+This is a project that aims to create a simple Backend for to control store visualise charging processes for electric cars.
+Written in Javascript. And tested on a X-Charge - C2EU - AC Charging Station.
 
 Starting Point:
 
-* OCPP 1.5 & 1.6
-* written in Javascript (node.js)
-* Keba P30x and X-Charge C2EU are used for testing.
-* central system adress (adress of the server) is the http://192.168.0.178:9220 
+* OCPP 1.6 -J
+* Server written in node.js using the ws module
+* X-Charge C2EU are used for testing.
+* central system adress (adress of the server) is the http://192.168.0.23:9016 
 
 Update 6.5   /// I can now display some of the messages that Keba sends on the console log
 Update 14.5  /// In order to have more control on the wsdl service generated and the I will try strong-soap, found out it is mainly                    for programming clients and only has a mock-server
@@ -50,10 +50,6 @@ info/sources(needs cleanup / revision -- bottom of list is newer)
 
 node Packages
 ------
-
-- npm install express
-- npm install body-parser
-- npm install express-xml-bodyparser --save
-- npm install soap ///
-- npm install body-parser
 - npm install ws // installs websockets
+- npm install node-uuid // Unique Id's
+- npm install http-proxy // 
