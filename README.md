@@ -18,9 +18,7 @@ Update 22.5  /// First test with a new Charging Station (XCharge) over websocket
 
 todos 
 -----
-- get boot notifications from Charging Station ------------------------------------------------------------ Done
-- generate a valid reply :
-- think of an App structure
+- think of an App structure . index.html
 - design the ui and the basic functionalities
 - test the whole thing
 - write about what you did, how you overcame all these little problems and why you think the code works
