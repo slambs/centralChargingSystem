@@ -1,0 +1,8 @@
+information on ui
+
+* total kWh Charged
+* Chargepoint online or not
+* Tag Id of Card
+* logs (hidden)
+* Start Transaction
+* Reset
