@@ -23,8 +23,10 @@ wss.on('connection', function (ws) {
     
     // message receiving event
     ws.on('message', function (message) {
+        //store Message to db
+        
         answerMessage = JSON.parse(message); // turn the string into a json
-        console.log(answerMessage[2]);
+        
         // Boot Notification Check and reply
         if (answerMessage[2]==="BootNotification"){
             console.log('Sending BootNotification Reply...')

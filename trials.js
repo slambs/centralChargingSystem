@@ -1,21 +1,29 @@
-var proxyPort = 80;
-var http = require('http');
-var httpProxy = require('http-proxy');
 
-http.createServer(function (req, res) {
-  res.write('Hello World!'); //write a response to the client
-  res.end(); //end the response
-}).listen(4000); //the server object listens on port 8080
+// [<MessageTypeId>, "<UniqueId>", "<Action>", {<Payload>}]
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/test', { useNewUrlParser: true });
 
-var options = {
-    router: {
-        'localhost':'http://plug.control'
-    }
-};
-console.log('Proxy Routing:');
-console.log(options);
-console.log();
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function () {
+  console.log('Connected!');
+  // we're connected!
+});
 
-var proxyServer = httpProxy.createServer(options);
-proxyServer.listen(proxyPort);
-console.log('Proxy listening on port ' + proxyPort);
+var ChargePointSchema = new mongoose.Schema({
+  MessageTypeId: Number,
+  UniqueId: String,
+  Action: String,
+  Payload: Object
+});
+
+var ChargePoints = mongoose.model('ChargePoints', ChargePointSchema);
+
+var ChargePoint1 = new ChargePoints({
+  MessageTypeId: 2,
+  UniqueId: "67",
+  Action: "BootNotification",
+  Payload: { "firmwareVersion": "1.1.1805.5-EU-2.3.01.22", "chargePointModel": "C2EU", "chargePointSerialNumber": "C2011601CNRVKAWV", "chargePointVendor": "XC" }
+});
+console.log(ChargePoint1.Payload); //
+console.log(ChargePoints);
