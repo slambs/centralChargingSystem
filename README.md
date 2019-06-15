@@ -22,18 +22,20 @@ todos
 - design the ui and the basic functionalities
 - test the whole thing
 - write about what you did, how you overcame all these little problems and why you think the code works
+- save data to mongo.db
 
 
 notes
 ------
 probably useful links( It may be useful to clean the links from time to time if you don't remember using them)
 * node.js http // html ( https://nodejs.org/api/http.html#http_message_rawheaders )
-* remember that you can use unsplash to get your 
+* one page or multiple? Boilerplate? 
 
 
 
 info/sources(needs cleanup / revision -- bottom of list is newer)
 -----
+* https://www.jenniferbland.com/saving-data-to-mongodb-database-from-node-js-application-tutorial/
 * https://nodejs.org/en/docs/guides/anatomy-of-an-http-transaction/
 * https://nodejs.org/api/http.html#http_message_rawheaders
 * https://nodejs.org/api/events.html

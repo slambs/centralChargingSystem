@@ -20,6 +20,7 @@ wss.on('connection', function (ws) {
     // show the uuid of the connected client
     console.log('client [%s] connected', client_uuid);
     
+    
     // message receiving event
     ws.on('message', function (message) {
         answerMessage = JSON.parse(message); // turn the string into a json
@@ -36,7 +37,7 @@ wss.on('connection', function (ws) {
             console.log('Sending StartTransaction reply...');
             StartReply =[3,answerMessage[1],{"status":"Accepted"}];
             console.log(StartReply);
-            //clients[0].ws.send(JSON.stringify(StartReply));
+            clients[0].ws.send(JSON.stringify(StartReply));
             };
         //Heartbeat check and reply
         if (answerMessage[2]==="Heartbeat"){
