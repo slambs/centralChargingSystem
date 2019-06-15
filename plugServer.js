@@ -3,12 +3,16 @@ console.log('Plug cOnTrOl started...');
 // importing dependencies
 var WebSocket = require('ws');
 var uuid = require('node-uuid');
+var chargeLogs = require('./database');
+
 // start web Socket Server on Port xxxx
 var WebSocketServer = WebSocket.Server,
     wss = new WebSocketServer({ port: 9016 });
 
 // list of connected clients
 var clients = [];
+
+
 
 
 // Connection Event
@@ -24,9 +28,25 @@ wss.on('connection', function (ws) {
     // message receiving event
     ws.on('message', function (message) {
         //store Message to db
+        //
         
+        //
+        //
         answerMessage = JSON.parse(message); // turn the string into a json
+        var chargeLog1 = new chargeLogs({
+            MessageTypeId: answerMessage[0],
+            UniqueId: answerMessage[1],
+            Action: answerMessage[2],
+            Payload: answerMessage[3]});
         
+          chargeLog1.save(function (err,chargeLog1) {
+            if (err) return console.error(err);
+            console.log('Entry saved!');
+          });
+          
+        
+
+
         // Boot Notification Check and reply
         if (answerMessage[2]==="BootNotification"){
             console.log('Sending BootNotification Reply...')
@@ -76,3 +96,4 @@ wss.on('connection', function (ws) {
 });
 
 // to do - Sanity Check for the 70s - Start Transaction Request
+
