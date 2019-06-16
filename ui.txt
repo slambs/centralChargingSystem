@@ -1,4 +1,4 @@
-information on ui
+The information (functionalities) I want to represent on the UI
 
 * total kWh Charged
 * Chargepoint online or not

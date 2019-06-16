@@ -53,3 +53,5 @@ node Packages
 - npm install ws // installs websockets
 - npm install node-uuid // Unique Id's
 - npm install http-proxy // 
+- npm install body-parser
+- npm install express // front end
