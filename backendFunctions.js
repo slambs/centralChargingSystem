@@ -17,6 +17,10 @@ module.exports = {
             console.log('Generating StatusNotification reply...');
             return [3, message[1], {}];
 
+        }else if(message[2] === "MeterValues"){
+            console.log('Generating MeterValues reply...');
+            return [3, message[1], {}];
+
         }else if(message[2] === "Authorize"){
             // Check if ID in Backend in the future, or similar
             console.log('Generating Authorize reply...');

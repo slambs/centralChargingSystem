@@ -25,12 +25,12 @@ app.get('/', (req, res) => {
 
 const resetMessage = [ 2, '1', "Reset", { type: "Hard" } ];
  
-var foo = function() {
+var sendReset = function() {
     console.log(resetMessage);
   };
   
   app.post('/', function(req, res) {
     console.log(req.body);
     res.sendFile(__dirname + '/index.html');
-    foo();
+    sendReset();
   });
