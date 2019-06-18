@@ -30,7 +30,6 @@ var sendReset = function() {
   };
   
   app.post('/', function(req, res) {
-    console.log(req.body);
     res.sendFile(__dirname + '/index.html');
     sendReset();
   });

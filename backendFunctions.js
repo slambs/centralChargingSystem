@@ -1,6 +1,7 @@
 module.exports = {
 
     generateReply : function(message){
+        //initiated by Charging Station
         if (message[2] === "BootNotification") {
             console.log('generating BootNotification reply...');
             return [3, message[1], { "status": "Accepted", "currentTime": new Date().toISOString(), "interval": 30 }]; //fixed Heartbeat Interval
@@ -37,3 +38,7 @@ module.exports = {
     }
 
 }
+
+
+
+//Taken from

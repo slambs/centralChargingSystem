@@ -1,23 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Plug Control</title>
-
-    
+    <title>Document</title>
 </head>
 
 <body>
-        <h3>This is Plug Control</h3>
+    <div class="message">
+        <h3>Put your text here:</h3>
         <br>
+        <textarea name="message" id="msgInput" cols="30" rows="10"></textarea>
         <br>
-        <!-- <button type="button" id="resetButton">Reset Button</button> -->
-    
-        <form method="post" action="/">
-            <button type="submit" formmethod="post">Reset</button>
-          </form>
+        <button name="send" id="btnSend">Send</button>
+    </div>
+    <div class="response">
+        <h3>After sending, you will see your text here: </h3>
+        <br>
+        <textarea id="output" cols="30" rows="10"></textarea>
+    </div>
+    <script>
+        var wsUri = "ws://192.168.0.23:9016/adminpanel";
+        var output;
+
+        function init() {
+            output = document.getElementById("output");
+            testWebSocket();
+        }
+
+        function testWebSocket() {
+            websocket = new WebSocket(wsUri);
+            // websocket.onopen = function (evt) { onOpen(evt) };
+            websocket.onclose = function (evt) { onClose(evt) };
+            websocket.onmessage = function (evt) { onMessage(evt) };
+            websocket.onerror = function (evt) { onError(evt) };
+        }
+
+        function onOpen(evt) {
+            writeToScreen("CONNECTED");
+            doSend({ "message": "WebSocket rocks" });
+        }
+
+        function onClose(evt) {
+            writeToScreen("DISCONNECTED");
+        }
+
+        function onMessage(evt) {
+            console.log(evt);
+            writeToScreen('RESPONSE/ANTWORT: ' + evt.data);
+            // websocket.close();
+        }
+
+        function onError(evt) {
+            writeToScreen('<span style="color: red;">ERROR:</span> ' + evt.data);
+        }
+
+        function doSend(message) {
+            writeToScreen("SENT: " + message);
+            websocket.send(JSON.stringify({"message":"TEst"}));
+        }
+
+        function writeToScreen(message) {
+            output.value = message;
+            // var pre = document.createElement("p");
+            // pre.style.wordWrap = "break-word";
+            // pre.innerHTML = message;
+            // output.appendChild(pre);
+        }
+        var inputText = document.getElementById("msgInput");
+        var button = document.getElementById("btnSend");
+        button.addEventListener("click", function () {
+            websocket.send(inputText.value);
+            console.log("Gratuliere. Websocket läuft");
+        });
+
+        window.addEventListener("load", init, false);
+    </script>
 </body>
 
 </html>

@@ -1,4 +1,7 @@
 console.log('Plug cOnTrOl started...');
+//############################################
+//#### Web Socket Server First ###############
+//###########################################
 
 // importing dependencies
 var WebSocket = require('ws');
@@ -14,8 +17,8 @@ var WebSocketServer = WebSocket.Server,
 
 // list of connected clients
 var clients = [];
-
 var count = 0;
+
 
 // Connection Event
 wss.on('connection', function (ws) {
@@ -30,27 +33,9 @@ wss.on('connection', function (ws) {
     ws.on('message', function (message) {
         //
         clientMessage = JSON.parse(message); // turn the string into a json
-        
         // Generate reply from backendFunctions.js
         reply = backendFunctions.generateReply(clientMessage);
         clients[0].ws.send(JSON.stringify(reply));
-
-        //send local list
-        if ( count>3 & count <5) {
-            CustomReply = [2,count.toString(),"SendLocalListRequest",{"version":1,"updateType":"Full","localAuthorizationList":{"idTag":"04574CEA643A80"}}]; 
-            console.log(CustomReply);
-             clients[0].ws.send(JSON.stringify(CustomReply));
-        }
-        //Check and reply on authorize
-        if ( count>5 & count <7 ) {
-            CustomReply = [ 2, '1', "Reset", { type: "Hard" } ];
-            // my key --> "04574CEA643A80" or "00000000" or "A857C22D"
-           // CustomReply = [ 2, stringify(count), "RemoteStartTransaction", { idTag: "" } ];
-           //CustomReply = [2,count.toString(),"GetLocalListVersionRequest",{}]; 
-           console.log(CustomReply);
-            clients[0].ws.send(JSON.stringify(CustomReply));
-
-        }
 
         // Display received message, time and a separator
         console.log('Received Message: %s', message);
@@ -78,12 +63,11 @@ wss.on('connection', function (ws) {
         console.log(code);
         console.log(reason);
         console.log('Socket closed!');
+        //set lamp to false //CSS
+
     });
     process.on('SIGINT', function () {
         console.log("Closing things");
         process.exit();
     });
 });
-
-// to do - Sanity Check for the 70s - Start Transaction Request
-
