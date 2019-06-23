@@ -31,12 +31,13 @@ wss.on('connection', function (ws) {
 
     // message receiving event
     ws.on('message', function (message) {
-        //
+        console.log(message);
         clientMessage = JSON.parse(message); // turn the string into a json
         // Generate reply from backendFunctions.js
         reply = backendFunctions.generateReply(clientMessage);
+        
         clients[0].ws.send(JSON.stringify(reply));
-
+        console.log('REply : ',reply);
         // Display received message, time and a separator
         console.log('Received Message: %s', message);
         console.log('TimeStamp : ', Date());
@@ -57,6 +58,10 @@ wss.on('connection', function (ws) {
 
         count = count+1;
         console.log('count is : ',count);
+    });
+    ws.on('error',function (params) {
+        console.log('error : ', params);
+        
     });
 
     ws.on('close', function (code, reason) {

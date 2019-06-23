@@ -1,12 +1,15 @@
 ## Central Charging System- plug.control
 by V.S
 
-This is a project that aims to create a simple Backend for to control store visualise charging processes for electric cars.
+This is a project that aims to create a simple Backend in order to:
+1. control a charging Station
+2. Store and Visualise charging processes 
+3. Export data in a given format.
 Written in Javascript. And tested on a X-Charge - C2EU - AC Charging Station.
 
 Starting Point:
 
-* OCPP 1.6 -J
+* OCPP 1.6 - JSON
 * Server written in node.js using the ws module
 * X-Charge C2EU are used for testing.
 * central system adress (adress of the server) is the http://192.168.0.23:9016 
@@ -55,3 +58,5 @@ node Packages
 - npm install http-proxy // 
 - npm install body-parser
 - npm install express // front end
+- npm install open // opens the front-end webpage
+- npm install bootstrap@3 // style

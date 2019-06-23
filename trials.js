@@ -1,15 +1,30 @@
-var backendFunctions = require('./backendFunctions')
+const express = require('express')
+const mongoOp = require("./mongo")
+const app = express()
+const router = express.Router()
 
-var testResponse = [2,"59","BootNotification",{"firmwareVersion":"1.1.1805.5-EU-2.3.01.22","chargePointModel":"C2EU","chargePointSerialNumber":"C2011601CNRVKAWV","chargePointVendor":"XC"}];
-console.log('we get : ',testResponse);
+router.get('/users',(req,res) => {
+  var pageNo = parseInt(req.query.pageNo)
+  var size = parseInt(req.query.size)
+  var query = {}
+  if(pageNo < 0 || pageNo === 0) {
+        response = {"error" : true,"message" : "invalid page number, should start with 1"};
+        return res.json(response)
+  }
+  query.skip = size * (pageNo - 1)
+  query.limit = size
+  // Find some documents
+       mongoOp.find({},{},query,function(err,data) {
+        // Mongo command to fetch all data from collection.
+            if(err) {
+                response = {"error" : true,"message" : "Error fetching data"};
+            } else {
+                response = {"error" : false,"message" : data};
+            }
+            res.json(response);
+        });
+})
 
-console.log('we reply : ',backendFunctions.generateReply(testResponse));
-
-
-//send local list
-        // if ( count>3 & count <5) {
-        //     CustomReply = [2,count.toString(),"SendLocalListRequest",{"version":1,"updateType":"Full","localAuthorizationList":{"idTag":"04574CEA643A80"}}]; 
-        //     console.log(CustomReply);
-        //      clients[0].ws.send(JSON.stringify(CustomReply));
-        // }
-        //Check and reply on authorize
+app.use('/api',router)
+app.listen(3000)
+We are fetching all the records with the query limit and 
