@@ -14,10 +14,10 @@ Starting Point:
 * X-Charge C2EU are used for testing.
 * central system adress (adress of the server) is the http://192.168.0.23:9016 
 
-Update 6.5   /// I can now display some of the messages that Keba sends on the console log
-Update 14.5  /// In order to have more control on the wsdl service generated and the I will try strong-soap, found out it is mainly                    for programming clients and only has a mock-server
-Update 22.5  /// First test with a new Charging Station (XCharge) over websockets and OCPP 1.6
+The Backend
 
+
+The Frontend
 
 todos 
 -----

@@ -1,9 +1,9 @@
 const express = require('express')
-const mongoOp = require("./mongo")
+const mongoOp = require("./database")
 const app = express()
 const router = express.Router()
 
-router.get('/users',(req,res) => {
+router.get('/chargelogs',(req,res) => {
   var pageNo = parseInt(req.query.pageNo)
   var size = parseInt(req.query.size)
   var query = {}
@@ -25,6 +25,5 @@ router.get('/users',(req,res) => {
         });
 })
 
-app.use('/api',router)
-app.listen(3000)
-We are fetching all the records with the query limit and 
+app.use('/api',router);
+app.listen(3000);
