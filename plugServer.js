@@ -17,6 +17,7 @@ var WebSocketServer = WebSocket.Server,
 
 // list of connected clients
 var clients = [];
+// Count OCPP Message Transactions
 var count = 0;
 
 
@@ -44,20 +45,20 @@ wss.on('connection', function (ws) {
         console.log('##################################');
        
         //store Message to db
-        // var chargeLog1 = new chargeLogs({
-        //     MessageTypeId: clientMessage[0],
-        //     UniqueId: clientMessage[1],
-        //     Action: clientMessage[2],
-        //     Payload: clientMessage[3]
-        // });
+        var chargeLog1 = new chargeLogs({
+            MessageTypeId: clientMessage[0],
+            UniqueId: clientMessage[1],
+            Action: clientMessage[2],
+            Payload: clientMessage[3]
+        });
 
-        // chargeLog1.save(function (err, chargeLog1) {
-        //     if (err) return console.error(err);
-        //     console.log('Entry saved!');
-        // });
+        chargeLog1.save(function (err, chargeLog1) {
+            if (err) return console.error(err);
+            console.log('Entry saved!');
+        });
 
         count = count+1;
-        console.log('count is : ',count);
+        console.log('OCPP Message count is : ',count);
     });
     ws.on('error',function (params) {
         console.log('error : ', params);

@@ -40,7 +40,7 @@ module.exports = {
             // Check if ID in Backend in the future, or similar
             console.log('Generating RemoteStartTransaction...');
             replyCounter = replyCounter+1;
-            return [2, replyCounter.toString(), "RemoteStartTransactionRequest", { "idTag": "00000000"}];
+            return [2, replyCounter.toString(), "RemoteStartTransactionRequest",{"idTag":"6ac32b40","connectorId":1}];
         // -- Remote Stop Transaction
         }else if(message[2] === "RemoteStopTransactionRequest"){
             // Check if ID in Backend in the future, or similar

@@ -412,7 +412,7 @@
             });
     
             SendButton.addEventListener("click", function () {
-                websocket.send('[ 2, "1", "RemoteStartTransactionRequest", { "idTag": "00000000" } ]');
+                websocket.send('[ 2, "1","RemoteStartTransactionRequest",{"idTag":"6ac32b40","connectorId":1} ]');
                 console.log("Start TransactionSend to WS");
             });
     
