@@ -35,10 +35,11 @@ wss.on('connection', function (ws) {
         console.log(message);
         clientMessage = JSON.parse(message); // turn the string into a json
         // Generate reply from backendFunctions.js
+        //if (clients.length ==2){}
         reply = backendFunctions.generateReply(clientMessage);
         
         clients[0].ws.send(JSON.stringify(reply));
-        console.log('REply : ',reply);
+        console.log('From Backend to CP : ',reply);
         // Display received message, time and a separator
         console.log('Received Message: %s', message);
         console.log('TimeStamp : ', Date());
@@ -51,7 +52,6 @@ wss.on('connection', function (ws) {
             Action: clientMessage[2],
             Payload: clientMessage[3]
         });
-
         chargeLog1.save(function (err, chargeLog1) {
             if (err) return console.error(err);
             console.log('Entry saved!');
@@ -59,6 +59,8 @@ wss.on('connection', function (ws) {
 
         count = count+1;
         console.log('OCPP Message count is : ',count);
+        console.log('##################################');
+    
     });
     ws.on('error',function (params) {
         console.log('error : ', params);
